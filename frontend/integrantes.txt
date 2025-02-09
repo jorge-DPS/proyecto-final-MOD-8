@@ -1,0 +1,21 @@
+## Team Members
+
+- Jorge Daniel Pacosillo Santander (C.I.: 7082023) 
+- Diego Gorostiaga Marin (C.I.: 10934985)
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run serve
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
