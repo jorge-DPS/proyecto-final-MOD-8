@@ -5,6 +5,16 @@ from inmuebleslist_app.api.serializers import InmuebleSerializer, PersonaSeriali
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework import generics, mixins
+#filter
+from django_filters.rest_framework import DjangoFilterBackend
+from inmuebleslist_app.api.filters import PersonaFilter
+
+
+class PersonaFilteredList(generics.ListAPIView):
+    queryset = Persona.objects.all()
+    serializer_class = PersonaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = PersonaFilter
 
 class EmpresaList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Empresa.objects.all()
@@ -28,11 +38,25 @@ class PersonaList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gener
         return self.list(request, *args, **kwargs)
     def post(self, request, *args,**kwargs):
         return self.create(request, *args, **kwargs)
-class PersonaDetail(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+class PersonaDetail(mixins.RetrieveModelMixin, 
+                    mixins.UpdateModelMixin, 
+                    mixins.DestroyModelMixin, 
+                    generics.GenericAPIView):
     queryset = Persona.objects.all()
-    serializer_class = InteresadoSerializer
-    def get(self, request, *args,**kwargs):
-        return self.retrieve(request, *args,**kwars)
+    serializer_class = PersonaSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
 
 
 class InteresadoList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
