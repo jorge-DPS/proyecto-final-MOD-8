@@ -1,4 +1,4 @@
-# version: '3.8'
+version: '3.8'
 
 services:
   mysql:
@@ -6,10 +6,10 @@ services:
     container_name: mysql_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: inmuebledb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root  # Mantiene la contraseña del usuario root
+      MYSQL_DATABASE: inmuebledb  # Crea la base de datos automáticamente
+      MYSQL_USER: user  # Define un usuario regular en lugar de root
+      MYSQL_PASSWORD: password  # Contraseña del usuario regular
     volumes:
       - db_data:/var/lib/mysql
     ports:
@@ -24,8 +24,8 @@ services:
     depends_on:
       - mysql
     environment:
-      DB_NAME: mydb
-      DB_USER: user
+      DB_NAME: inmuebledb
+      DB_USER: user  # Asegúrate de usar el usuario que creaste en MySQL
       DB_PASSWORD: password
       DB_HOST: mysql
       DB_PORT: 3306
