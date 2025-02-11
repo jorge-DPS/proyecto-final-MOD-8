@@ -1,3 +1,4 @@
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from inmuebleslist_app.models import Inmueble, Empresa, Persona, Interesado
 from inmuebleslist_app.api.serializers import InmuebleSerializer, PersonaSerializer, InteresadoSerializer, EmpresaSerializer
@@ -101,6 +102,7 @@ class InteresadoDetail(
 
 
 class InmuebleListAV(APIView):
+    parser_classes = [MultiPartParser, FormParser]
     def get(self, request):
         inmuebles = Inmueble.objects.all()
         serializer= InmuebleSerializer(inmuebles, many=True)

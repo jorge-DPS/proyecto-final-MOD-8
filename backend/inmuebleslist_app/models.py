@@ -13,7 +13,7 @@ class Inmueble(models.Model):
     direccion = models.CharField(max_length=250)
     pais = models.CharField(max_length=150)
     descripcion = models.CharField(max_length=500)
-    imagen = models.CharField(max_length=900)
+    imagen = models.ImageField(upload_to="inmuebles/", null=True, blank=True)
     active = models.BooleanField(default=True)
     caracteristicas = models.JSONField(null=True, blank=True)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name="inmueble")

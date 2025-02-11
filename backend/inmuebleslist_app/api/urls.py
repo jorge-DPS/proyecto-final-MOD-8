@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 #from inmuebleslist_app.api.views import inmueble_list, inmueble_detalle
 from inmuebleslist_app.api.views import InmuebleListAV, InmuebleDetalleAV, PersonaList, PersonaDetail, EmpresaList, EmpresaDetail, InteresadoList, InteresadoDetail, PersonaFilteredList
 urlpatterns=[
